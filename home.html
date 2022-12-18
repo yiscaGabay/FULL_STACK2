@@ -5,27 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play It-Home</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="home.js">
-    <!-- <script src="home.js"></script> -->
+    <link rel="stylesheet" href="home.css">
+    <script src="home.js"></script>
 </head>
 
-<h1>WELCOME TO PLAY IT</h1>
+
+<header>
+    <h1>MEMORY GAME</h1>
+</header>
 <body>
-    <script src="/home.js"></script>
-    <!-- <script>alert(sub());</script> -->
     <h2>LOG IN</h2>
-    <form id="form">
+    <!-- <form id="form1">
         <label for="name">User Name:*</label><br>
         <input type="text" id="name" name="name" placeholder="Enter user name" size="100" ><br>
         <label for="password">Password:*</label><br>
         <input type="password" id="password" name="password" placeholder="Enter password" size="100"   min="8" max="10">
-        <div class="button">
-            <input id="submit" name="submit" type="submit" value="submit" onclick="subm();">
+        <div class="logIn">
+            <input id="logIn" name="submit" type="submit" value="submit">
+        </div>
+    </form> -->
+    <h2>SIGM IN</h2>
+    <form id="form2">
+        <label for="name">User Name:*</label><br>
+        <input type="text" id="name" name="name" placeholder="Enter user name" size="100" ><br>
+        <label for="password">Password:*</label><br>
+        <input type="password" id="password" name="password" placeholder="Enter password" size="100"   min="8" max="10">
+        <div class="signIn">
+            <input id="signIn" name="signIn" type="submit" value="Sign in">
         </div>
     </form>
-    
+    <div class="createAccount">
+        
+    </div>
+    <input type="button" id="createAccount" name="createAccount" value="Create account">
     <a href="createPassword.html" </a>Forgot your password?</a> 
-    <a href="createAccount.html" </a>Create account</a> 
 </body>
 </html>
