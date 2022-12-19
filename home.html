@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play It-Home</title>
     <link rel="stylesheet" href="home.css">
-    <script src="home.js"></script>
+    <script type="text/javascript" src="home.js"></script>
 </head>
 
 
@@ -14,30 +14,44 @@
     <h1>MEMORY GAME</h1>
 </header>
 <body>
+    <div id="containerLogIn" >
     <h2>LOG IN</h2>
-    <!-- <form id="form1">
+    <form id="form1">
         <label for="name">User Name:*</label><br>
-        <input type="text" id="name" name="name" placeholder="Enter user name" size="100" ><br>
+        <input type="text" id="nameLogIn" name="nameLogIn" placeholder="Enter user name" size="100" required><br>
         <label for="password">Password:*</label><br>
-        <input type="password" id="password" name="password" placeholder="Enter password" size="100"   min="8" max="10">
-        <div class="logIn">
-            <input id="logIn" name="submit" type="submit" value="submit">
-        </div>
-    </form> -->
-    <h2>SIGM IN</h2>
-    <form id="form2">
-        <label for="name">User Name:*</label><br>
-        <input type="text" id="name" name="name" placeholder="Enter user name" size="100" ><br>
-        <label for="password">Password:*</label><br>
-        <input type="password" id="password" name="password" placeholder="Enter password" size="100"   min="8" max="10">
-        <div class="signIn">
-            <input id="signIn" name="signIn" type="submit" value="Sign in">
-        </div>
+        <input type="password" id="passwordLogIn" name="passwordLogIn" placeholder="Enter password" size="100" minlength="8" maxlength="10" required><br>
+        <input id="logIn" name="logIn" type="submit" value="LOG IN"><br>
+        <input type="button" id="createAccount" name="createAccount" value="Create account">
+        <input type="button" id="newPassword" value="Forgot your password?">
     </form>
-    <div class="createAccount">
-        
-    </div>
-    <input type="button" id="createAccount" name="createAccount" value="Create account">
-    <a href="createPassword.html" </a>Forgot your password?</a> 
+</div>
+
+<div hidden id="containerSignIn" >
+    <h2 >SIGN IN</h2>
+    <form id="form2">
+        <label for="name">Choose a User Name:*</label><br>
+        <input type="text" id="nameSignIn" name="nameSignIn" placeholder="Enter user name" size="100" required ><br>
+        <label for="password">Choose a Password:*</label><br>
+        <input type="password" id="passwordSignIn" name="passwordSignIn" placeholder="Enter password" size="100"   minlength="8" maxlength="10" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$" required><br>
+        <!-- <label for="password">Verify Password:*</label><br>
+        <input type="password" id="passwordVerifyNew" name="passwordVerifyNew" placeholder="Enter password" size="100"   min="8" max="10" required><br> -->
+        <input id="signIn" name="signIn" type="submit" value="Sign in">
+    </form>
+</div>
+
+<div hidden id="containerForgot" >
+    <h2>NEW PASSWORD</h2>
+    <form id="form3">
+        <label for="name">User Name:*</label><br>
+        <input type="text" id="nameForgot" name="nameForgot" placeholder="Enter user name" size="100" required><br>
+        <label for="password">New Password:*</label><br>
+        <input type="password" id="passwordForgot" name="passwordForgot" placeholder="Enter password" size="100"   min="8" max="10" required><br>
+        <!-- <label for="password">Verify Password:*</label><br>
+        <input type="password" id="passwordVerifyForgot" name="passwordVerifyForgot" placeholder="Enter password" size="100"   min="8" max="10" required><br> -->
+        <input id="update" name="update" type="submit" value="Update"><br>
+    </form>
+</div>
+     
 </body>
 </html>
