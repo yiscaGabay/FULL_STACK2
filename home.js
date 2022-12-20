@@ -21,3 +21,5 @@ function myFunction(event){
     //document.getElementById("createAccount").innerHTML = "red";
     //alert("myFunction");
 }
+
+document.querySelector('createAccount').disabled = false;
