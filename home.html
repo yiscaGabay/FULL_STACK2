@@ -11,7 +11,7 @@
 
 
 <header>
-    <h1>MEMORY GAME</h1>
+    <h1>PLAY IT</h1>
 </header>
 <body>
     <div id="containerLogIn" >
@@ -33,10 +33,10 @@
         <label for="name">Choose a User Name:*</label><br>
         <input type="text" id="nameSignIn" name="nameSignIn" placeholder="Enter user name" size="100" required ><br>
         <label for="password">Choose a Password:*</label><br>
-        <input type="password" id="passwordSignIn" name="passwordSignIn" placeholder="Enter password" size="100"   minlength="8" maxlength="10" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$" required><br>
+        <input type="password" id="passwordSignIn" name="passwordSignIn" placeholder="Enter password" size="100" minlength="8" maxlength="10" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$" required><br>
         <!-- <label for="password">Verify Password:*</label><br>
         <input type="password" id="passwordVerifyNew" name="passwordVerifyNew" placeholder="Enter password" size="100"   min="8" max="10" required><br> -->
-        <input id="signIn" name="signIn" type="submit" value="Sign in">
+        <input id="signIn" name="signIn" type="button" value="Sign in" formaction="">
     </form>
 </div>
 
@@ -52,6 +52,7 @@
         <input id="update" name="update" type="submit" value="Update"><br>
     </form>
 </div>
+<label id="message"></label>
      
 </body>
 </html>
