@@ -27,18 +27,18 @@
     </form>
 </div>
 
-<div hidden id="containerSignIn" >
-    <h2 >SIGN IN</h2>
-    <form id="form2">
-        <label for="name">Choose a User Name:*</label><br>
-        <input type="text" id="nameSignIn" name="nameSignIn" placeholder="Enter user name" size="100" required ><br>
-        <label for="password">Choose a Password:*</label><br>
-        <input type="password" id="passwordSignIn" name="passwordSignIn" placeholder="Enter password" size="100" minlength="8" maxlength="10" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$" required><br>
-        <!-- <label for="password">Verify Password:*</label><br>
-        <input type="password" id="passwordVerifyNew" name="passwordVerifyNew" placeholder="Enter password" size="100"   min="8" max="10" required><br> -->
-        <input id="signIn" name="signIn" type="submit" value="Sign in" formaction="">
-    </form>
-</div>
+    <div id="containerSignIn">
+        <h2>SIGN IN</h2>
+        <form id="form2">
+            <input type="text" id="nameSignIn" maxlength="10" name="nameSignIn" placeholder="Choose a User Name" size="100"
+                required><br>
+            <input type="password" id="passwordSignIn" name="passwordSignIn" placeholder="Choose a Password" size="100"
+                minlength="8" maxlength="10" required><br>
+            <i class="bi bi-eye-slash" id="togglePassword"></i> <!-- eye-icon -->
+            <input id="signIn" name="signIn" class="inputButton" type="button" value="Sign in" formaction=""
+                onclick="switchVisible();">
+        </form>
+    </div>
 
 <div hidden id="containerForgot" >
     <h2>NEW PASSWORD</h2>
