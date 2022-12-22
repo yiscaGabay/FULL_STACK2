@@ -16,46 +16,49 @@
 </header>
 
 <body>
-    <div id="containerLogIn" >
-    <h2>LOG IN</h2>
-    <form id="form1">
-        <label for="name">User Name:*</label><br>
-        <input type="text" id="nameLogIn" name="nameLogIn" placeholder="Enter user name" size="100" required><br>
-        <label for="password">Password:*</label><br>
-        <input type="password" id="passwordLogIn" name="passwordLogIn" placeholder="Enter password" size="100" minlength="8" maxlength="10" required><br>
-        <input id="logIn" name="logIn" type="button" value="LOG IN"><br>
-        <input type="button" id="createAccount" name="createAccount" value="Create account">
-        <input type="button" id="newPassword" value="Forgot your password?">
-    </form>
-</div>
 
-<div hidden id="containerSignIn" >
-    <h2 >SIGN IN</h2>
-    <form id="form2">
-        <label for="name">Choose a User Name:*</label><br>
-        <input type="text" id="nameSignIn" name="nameSignIn" placeholder="Enter user name" size="100" required ><br>
-        <label for="password">Choose a Password:*</label><br>
-        <input type="password" id="passwordSignIn" name="passwordSignIn" placeholder="Enter password" size="100" minlength="8" maxlength="10" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$" required><br>
-        <!-- <label for="password">Verify Password:*</label><br>
-        <input type="password" id="passwordVerifyNew" name="passwordVerifyNew" placeholder="Enter password" size="100"   min="8" max="10" required><br> -->
-        <input id="signIn" name="signIn" type="button" value="Sign in" formaction="">
-    </form>
-</div>
+    <div id="containerLogIn" class="containerLogIn">
+        <h2>LOG IN</h2>
+        <form id="form1">
+            <div class="divUsername">
+                <input type="text" id="nameLogIn" maxlength="10" name="nameLogIn" placeholder="Enter user name"
+                    size="100" required><br>
+            </div>
+            <div class="divPassword">
+                <input type="password" id="passwordLogIn" name="passwordLogIn" placeholder="Enter password" size="100"
+                    minlength="8" maxlength="10" required><br>
+            </div>
+            <input class="inputButton" id="logIn" name="logIn" type="button" value="LOG IN"><br> <!-- disabled-->
+            <input class="inputButton" type="button" id="createAccount" name="createAccount" value="Create account"
+                onclick="switchVisible();">
+            <input class="inputButton" type="button" id="newPassword" value="Forgot your password?">
+        </form>
+    </div>
 
-<div hidden id="containerForgot" >
-    <h2>NEW PASSWORD</h2>
-    <form id="form3">
-        <label for="name">User Name:*</label><br>
-        <input type="text" id="nameForgot" name="nameForgot" placeholder="Enter user name" size="100" required><br>
-        <label for="password">New Password:*</label><br>
-        <input type="password" id="passwordForgot" name="passwordForgot" placeholder="Enter password" size="100"   min="8" max="10" required><br>
-        <!-- <label for="password">Verify Password:*</label><br>
-        <input type="password" id="passwordVerifyForgot" name="passwordVerifyForgot" placeholder="Enter password" size="100"   min="8" max="10" required><br> -->
-        <input id="update" name="update" type="button" value="Update"><br>
-    </form>
-</div>
-<label id="message"></label>
-     
+    <div id="containerSignIn">
+        <h2>SIGN IN</h2>
+        <form id="form2">
+            <input type="text" id="nameSignIn" maxlength="10" name="nameSignIn" placeholder="Choose a User Name" size="100"
+                required><br>
+            <input type="password" id="passwordSignIn" name="passwordSignIn" placeholder="Choose a Password" size="100"
+                minlength="8" maxlength="10" required><br>
+            <i class="bi bi-eye-slash" id="togglePassword"></i> <!-- eye icon -->
+            <input id="signIn" name="signIn" class="inputButton" type="button" value="Sign in" formaction=""
+                onclick="switchVisible();">
+        </form>
+    </div>
+
+    <div hidden id="containerForgot">
+        <h2>NEW PASSWORD</h2>
+        <form id="form3">
+            <input type="text" id="nameForgot" name="nameForgot" maxlength="10" placeholder="Enter your user name" size="100"
+                required><br>
+            <input type="password" id="passwordForgot" name="passwordForgot" placeholder="Enter new password" size="100"
+                min="8" max="10" required><br>
+            <input id="update" name="update" class="inputButton" type="button" value="Update"><br>
+        </form>
+    </div>
+    <label id="message"></label>
 
 </body>
 

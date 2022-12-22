@@ -3,12 +3,5 @@
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "msedge",
-            "request": "launch",
-            "name": "Open home.html",
-            "file": "c:\\Repositories-Full stack\\Full-Stack-project_2\\FULL_STACK2\\home.html"
-        }
-    ]
+    
 }
