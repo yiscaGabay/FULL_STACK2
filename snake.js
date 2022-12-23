@@ -1,5 +1,5 @@
-addEventListener('load', st);
-
+let game=addEventListener('load', st);
+game.start();
 const arraysMatch = function (arr1, arr2) {
     if (arr1.length !== arr2.length) return false;
 
@@ -70,19 +70,17 @@ class SnakeGame {
         // Background rect
         this.ctx.fillStyle = '#222222';
         this.ctx.fillRect(0, 0, 600, 600);
-
         // Every time a key is down
         addEventListener('keydown', function (e) {
             // The movements (ordered so I can do some maths c:)
             const moves = ['ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight'];
-
             // if the key pressed is a valid move key
             if (moves.includes(e.key)) {
                 // The move index
                 const move = moves.indexOf(e.key);
-
                 if (move % 2 === 0) {
                     // Movement: up or down
+                    
                     if (game.direction[0] !== 0 || !game.hasStarted) {
                         // Change the y direction
                         game.direction[1] = move === 0 ? -1 : 1;
@@ -201,7 +199,8 @@ function st(){
     // Create the game instance
     const game = new SnakeGame(600, 600, 20, document.getElementById('snakeGame'));
     // Start the game
-    game.start();
+    // game.start();
+    return game;
 }
 
 
