@@ -12,9 +12,36 @@ function handleClick(event) {
         throw "Event prevented";
     }
     var idStr = event.target.id;
-    if (idStr == "speed") {
-        game.timer = (5e3 / (game.cs / 2));
-        start();
+
+    // To change speed(slowler/faster/default)
+    if (idStr == "changeSpeed") {
+        if (document.getElementById('faster').checked) {
+            game.timer = (1.5e3 / (game.cs / 2));
+            start();
+        }
+        if (document.getElementById('slower').checked) {
+            game.timer = (5e3 / (game.cs / 2));
+            start();
+        }
+        if (document.getElementById('default').checked) {
+            game.timer = (2e3 / (game.cs / 2));
+            start();
+        }
+    }
+
+    // To add stones
+    if (idStr == "AddStones") {
+        if (document.getElementById('add').checked) {
+            game.withStones = true;
+            do {game.apple = [Math.floor(Math.random() * game.xC), Math.floor(Math.random() * game.yC)];
+                
+            } while ( game.withStones && game.stones.map(p => arraysMatch(p, game.apple)).includes(true));
+            start();
+        }
+        if (document.getElementById('remove').checked) {
+            game.withStones = false;
+            start();
+        }
     }
 }
 
@@ -23,8 +50,9 @@ function buildMySnake(x, y, cs, canvas) {
         direction: [0, 0],
         launched: false,
         hasStarted: false,
-        timer: (1e3 / (cs / 2)),
+        timer: (2e3 / (cs / 2)),
         runningTime: 0,
+        withStones: false,
         cs: cs,
         xC: ((x - (x % cs)) / cs),
         yC: ((y - (y % cs)) / cs)
@@ -37,6 +65,7 @@ function buildMySnake(x, y, cs, canvas) {
             }
         })((mySnake.xC - (mySnake.xC % 2)) / 2 - 1, (mySnake.yC - (mySnake.yC % 2)) / 2 - 1)
 
+    mySnake.stones = [[3, 3], [3, 4], [4, 3], [4, 4], [3, 26], [3, 25], [4, 26], [4, 25], [26, 3], [25, 3], [26, 4], [25, 4], [26, 26], [25, 26], [26, 25], [25, 25]];
     return mySnake;
 }
 
@@ -58,13 +87,13 @@ const arraysMatch = function (arr1, arr2) {
 // The game start method
 async function start() {
     // Sey that the game has been started
-    game.launched = true;
 
     // Initialize keys and background
     init();
 
     // Auto-Restart
     while (1) {
+        game.launched = true;
         // While the game still runs
         while (game.launched) {
             // Wait for the next frame
@@ -77,7 +106,7 @@ async function start() {
 
 function init() {
     // Background rect
-    game.ctx.fillStyle = '#222222';
+    game.ctx.fillStyle = 'rgb(26, 167, 175)';
     game.ctx.fillRect(0, 0, 600, 600);
     // Every time a key is down
     addEventListener('keydown', function (e) {
@@ -121,11 +150,46 @@ function run() {
         if (arraysMatch(game.snake.pos[0], game.apple)) {
             // Apple Eaten?
             game.snake.pos.push(game.apple);
-            game.apple = [Math.floor(Math.random() * game.xC), Math.floor(Math.random() * game.yC)];
+            //game.apple = [Math.floor(Math.random() * game.xC), Math.floor(Math.random() * game.yC)];
+            do {game.apple = [Math.floor(Math.random() * game.xC), Math.floor(Math.random() * game.yC)];
+                
+            } while ( game.withStones && game.stones.map(p => arraysMatch(p, game.apple)).includes(true));
         } else if (Array.from(game.snake.pos).splice(1, game.snake.pos.length).map(p => arraysMatch(p, game.snake.pos[0])).includes(true)) {
             // Self hit?
             alert(`You lose! Your total score was ${game.snake.pos.length - 3}!`);
             game.hasStarted = false;
+            game.withStones = false;
+            ddocument.getElementById('faster').checked = false;
+            document.getElementById('slower').checked = false;
+            document.getElementById('default').checked = false;
+            document.getElementById('add').checked = false;
+            document.getElementById('remove').checked = false;
+            // find the current user to update achivment
+            var currentUs = (localStorage.getItem(`user#${localStorage.currentUser}`)).split(/"/)[3];
+            for (let i = 1; i < localStorage.AmountOfUsers; i++) {
+                if ((localStorage.getItem(`user#${i}`)).split(/"/)[3] == currentUs) {
+                    console.log("IsExist in place " + i + " The total score is: " + (game.snake.pos.length - 3));
+                }
+            }
+            reset();
+        }
+        else if ((game.withStones) && (game.stones.map(p => arraysMatch(p, game.snake.pos[0])).includes(true))) {
+            // Stone hit?
+            alert(`You lose! Your total score was ${game.snake.pos.length - 3}!`);
+            game.hasStarted = false;
+            game.withStones = false;
+            document.getElementById('faster').checked = false;
+            document.getElementById('slower').checked = false;
+            document.getElementById('default').checked = false;
+            document.getElementById('add').checked = false;
+            document.getElementById('remove').checked = false;
+            // find the current user to update achivment
+            var currentUs = (localStorage.getItem(`user#${localStorage.currentUser}`)).split(/"/)[3];
+            for (let i = 1; i < localStorage.AmountOfUsers; i++) {
+                if ((localStorage.getItem(`user#${i}`)).split(/"/)[3] == currentUs) {
+                    console.log("IsExist in place " + i + " The total score is: " + (game.snake.pos.length - 3));
+                }
+            }
             reset();
         }
 
@@ -133,6 +197,20 @@ function run() {
             // Wall hit?
             alert(`You lose! Your total score was ${game.snake.pos.length - 3}!`);
             game.hasStarted = false;
+            game.withStones = false;
+            //document.getElementsByClassName('RB')[0].checked=false;//  .getElementById('r1').checked = false;
+            document.getElementById('faster').checked = false;
+            document.getElementById('slower').checked = false;
+            document.getElementById('default').checked = false;
+            document.getElementById('add').checked = false;
+            document.getElementById('remove').checked = false;
+            // find the current user to update achivment
+            var currentUs = (localStorage.getItem(`user#${localStorage.currentUser}`)).split(/"/)[3];
+            for (let i = 1; i < localStorage.AmountOfUsers; i++) {
+                if ((localStorage.getItem(`user#${i}`)).split(/"/)[3] == currentUs) {
+                    console.log("IsExist in place " + i + " The total score is: " + (game.snake.pos.length - 3));
+                }
+            }
             reset();
         }
 
@@ -143,7 +221,6 @@ function run() {
         document.getElementById('score').innerHTML = `You have ${game.snake.pos.length - 3} points.`;
         document.getElementById('time').innerHTML = `Time: ${(game.runningTime / game.timer).toFixed(1)}s`;
     }
-
     // Draw the canvas
     return draw();
 }
@@ -162,16 +239,22 @@ function draw() {
             const offset = 3;
             if (game.snake.pos.map(p => arraysMatch(p, pos)).includes(true)) {
                 // If the current block is a part of the snake
-                if (game.snake.pos.map(p => arraysMatch(p, pos)).indexOf(true) !== 0) ctx.fillStyle = '#41ff41';
+                if (game.snake.pos.map(p => arraysMatch(p, pos)).indexOf(true) !== 0) ctx.fillStyle = 'rgb(229, 129, 204)';
                 else ctx.fillStyle = '#ffaa41';
                 ctx.fillRect(xC * cs + offset, yC * cs + offset, cs - 2 * offset, cs - 2 * offset);
             } else if (arraysMatch(game.apple, pos)) {
                 // If the current block is an apple
                 ctx.fillStyle = '#ff4141';
                 ctx.fillRect(xC * cs + offset, yC * cs + offset, cs - 2 * offset, cs - 2 * offset);
-            } else {
+            } else if ((game.withStones) && (game.stones.map(p => arraysMatch(p, [xC, yC])).includes(true))) {
+
+                //If the user choose harder level - add stones
+                ctx.fillStyle = 'blue';
+                ctx.fillRect(xC * cs + offset, yC * cs + offset, cs - 2 * offset, cs - 2 * offset);
+            }
+            else {
                 // If the current block is nothing special
-                ctx.fillStyle = '#333333';
+                ctx.fillStyle = 'rgb(221, 253, 255)';
                 ctx.fillRect(xC * cs + offset, yC * cs + offset, cs - 2 * offset, cs - 2 * offset);
             }
         }
@@ -185,7 +268,10 @@ async function wait(t) {
 
 // Method used to reset the whole game
 function reset() {
-    game.apple = [Math.floor(Math.random() * game.xC), Math.floor(Math.random() * game.yC)];
+    //game.apple = [Math.floor(Math.random() * game.xC), Math.floor(Math.random() * game.yC)];
+    do {game.apple = [Math.floor(Math.random() * game.xC), Math.floor(Math.random() * game.yC)];
+                
+    } while ( game.withStones && game.stones.map(p => arraysMatch(p, game.apple)).includes(true));
 
     game.snake = new (class {
         constructor(x0, y0) {
@@ -195,16 +281,22 @@ function reset() {
 
     // Reset game time
     game.runningTime = 0;
-
+    game.timer = (1.5e3 / (game.cs / 2));
     // Set score text
     document.getElementById('score').innerHTML = `You have 0 points.`;
     // Set start text
     document.getElementById('time').innerHTML = `Press any arrow key to start moving!`;
 }
-//}
+
 
 
 // this.snake.pos = 3 cubes of the snake
 
 
-// delete game in all function
+
+
+                // (
+                //     xC == 3 && yC == 3 || xC == 3 && yC == 4 || xC == 4 && yC == 3 || xC == 4 && yC == 4 ||
+                //     xC == 3 && yC == 26 || xC == 3 && yC == 25 || xC == 4 && yC == 26 || xC == 4 && yC == 25 ||
+                //     xC == 26 && yC == 3 || xC == 25 && yC == 3 || xC == 26 && yC == 4 || xC == 25 && yC == 4 ||
+                //     xC == 26 && yC == 26 || xC == 25 && yC == 26 || xC == 26 && yC == 25 || xC == 25 && yC == 25 )

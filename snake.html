@@ -1,17 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>The Snake Game</title>
-  <!-- <link rel="stylesheet" href="snake.css"> -->
+  <link rel="stylesheet" href="snake.css">
   <script type="text/javascript" src="snake.js"></script>
 </head>
-<body style="margin: 0; background-color: #222222">
-<div class="game" style="margin: 1rem auto 0; width: 600px">
-  <h3 id="score" style="font-family: Arial, Helvetica, sans-serif; color: #ffffff">Press any arrow key to start moving!</h3>
-  <h3 id="time" style="font-family: Arial, Helvetica, sans-serif; color: #ffffff">Time: 0.0s</h3>
-  <canvas id="snakeGame" width="600" height="600"></canvas>
-  <button id="speed">speed</button>
-</div>
+
+<body>
+  <div class="divContainer">
+    <div class="game" >
+      <h3 id="score">Press any arrow key to start moving!</h3>
+      <h3 id="time">Time: 0.0s</h3>
+      <canvas id="snakeGame" width="600" height="600"></canvas>
+      <!-- <button id="speed">speed</button> -->
+    </div>
+
+    <div class="RB" id="RBSpeed">
+      <h2>Change speed</h2>
+      <label>Faster</label>
+      <input type="radio" id="faster" name="speed">
+      <label>Slower</label>
+      <input type="radio" id="slower" name="speed">
+      <label>Default</label>
+      <input type="radio" id="default" name="speed">
+      <button class="changeSpeed" id="changeSpeed">Go!</button>
+    </div>
+    <div class="RB" id="RBStones">
+      <h2>Add obstacles</h2>
+      <label>Add</label>
+      <input type="radio" id="add" name="stone">
+      <label>Remove</label>
+      <input type="radio" id="remove" name="stone">
+      <button class="AddStones" id="AddStones">Go!</button>
+    </div>
+  </div>
 </body>
+
 </html>
