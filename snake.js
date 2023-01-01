@@ -199,6 +199,7 @@ function run() {
             game.hasStarted = false;
             game.withStones = false;
             //document.getElementsByClassName('RB')[0].checked=false;//  .getElementById('r1').checked = false;
+            //document.getElementsByTagName('input').checked = false; 
             document.getElementById('faster').checked = false;
             document.getElementById('slower').checked = false;
             document.getElementById('default').checked = false;
