@@ -3,6 +3,15 @@ const game = buildMySnake(600, 600, 20, document.getElementById('snakeGame'));
 
 addEventListener('load', st);
 addEventListener('click', handleClick);
+function currentDate() {
+    var hour = new Date().getHours();
+    var minute = new Date().getMinutes();
+    var day = new Date().getDate();
+    var month = new Date().getMonth() + 1;
+    var year = new Date().getFullYear();
+    console.log(`${day}/${month}/${year} ${hour}:${minute}`);
+    return (`${day}/${month}/${year} ${hour}:${minute}`);
+}
 
 function handleClick(event) {
     if (event == undefined) {
@@ -33,9 +42,10 @@ function handleClick(event) {
     if (idStr == "AddStones") {
         if (document.getElementById('add').checked) {
             game.withStones = true;
-            do {game.apple = [Math.floor(Math.random() * game.xC), Math.floor(Math.random() * game.yC)];
-                
-            } while ( game.withStones && game.stones.map(p => arraysMatch(p, game.apple)).includes(true));
+            do {
+                game.apple = [Math.floor(Math.random() * game.xC), Math.floor(Math.random() * game.yC)];
+
+            } while (game.withStones && game.stones.map(p => arraysMatch(p, game.apple)).includes(true));
             start();
         }
         if (document.getElementById('remove').checked) {
@@ -151,25 +161,28 @@ function run() {
             // Apple Eaten?
             game.snake.pos.push(game.apple);
             //game.apple = [Math.floor(Math.random() * game.xC), Math.floor(Math.random() * game.yC)];
-            do {game.apple = [Math.floor(Math.random() * game.xC), Math.floor(Math.random() * game.yC)];
-                
-            } while ( game.withStones && game.stones.map(p => arraysMatch(p, game.apple)).includes(true));
+            do {
+                game.apple = [Math.floor(Math.random() * game.xC), Math.floor(Math.random() * game.yC)];
+
+            } while (game.withStones && game.stones.map(p => arraysMatch(p, game.apple)).includes(true));
         } else if (Array.from(game.snake.pos).splice(1, game.snake.pos.length).map(p => arraysMatch(p, game.snake.pos[0])).includes(true)) {
             // Self hit?
             alert(`You lose! Your total score was ${game.snake.pos.length - 3}!`);
             game.hasStarted = false;
             game.withStones = false;
-            ddocument.getElementById('faster').checked = false;
+            document.getElementById('faster').checked = false;
             document.getElementById('slower').checked = false;
             document.getElementById('default').checked = false;
             document.getElementById('add').checked = false;
             document.getElementById('remove').checked = false;
+
             // find the current user to update achivment
-            var currentUs = (localStorage.getItem(`user#${localStorage.currentUser}`)).split(/"/)[3];
-            for (let i = 1; i < localStorage.AmountOfUsers; i++) {
-                if ((localStorage.getItem(`user#${i}`)).split(/"/)[3] == currentUs) {
-                    console.log("IsExist in place " + i + " The total score is: " + (game.snake.pos.length - 3));
-                }
+            let index = localStorage.currentUser;
+            var user = JSON.parse(localStorage.getItem(`user#${index}`));
+            let achiv = user.achivment;
+            if ((game.snake.pos.length - 3) > achiv.maxSnake) {
+                user.achivment.maxSnake = game.snake.pos.length - 3;
+                localStorage.setItem(`user#${index}`, JSON.stringify(user));
             }
             reset();
         }
@@ -183,12 +196,13 @@ function run() {
             document.getElementById('default').checked = false;
             document.getElementById('add').checked = false;
             document.getElementById('remove').checked = false;
-            // find the current user to update achivment
-            var currentUs = (localStorage.getItem(`user#${localStorage.currentUser}`)).split(/"/)[3];
-            for (let i = 1; i < localStorage.AmountOfUsers; i++) {
-                if ((localStorage.getItem(`user#${i}`)).split(/"/)[3] == currentUs) {
-                    console.log("IsExist in place " + i + " The total score is: " + (game.snake.pos.length - 3));
-                }
+
+            let index = localStorage.currentUser;
+            var user = JSON.parse(localStorage.getItem(`user#${index}`));
+            let achiv = user.achivment;
+            if ((game.snake.pos.length - 3) > achiv.maxSnake) {
+                user.achivment.maxSnake = game.snake.pos.length - 3;
+                localStorage.setItem(`user#${index}`, JSON.stringify(user));
             }
             reset();
         }
@@ -204,12 +218,20 @@ function run() {
             document.getElementById('default').checked = false;
             document.getElementById('add').checked = false;
             document.getElementById('remove').checked = false;
-            // find the current user to update achivment
-            var currentUs = (localStorage.getItem(`user#${localStorage.currentUser}`)).split(/"/)[3];
-            for (let i = 1; i < localStorage.AmountOfUsers; i++) {
-                if ((localStorage.getItem(`user#${i}`)).split(/"/)[3] == currentUs) {
-                    console.log("IsExist in place " + i + " The total score is: " + (game.snake.pos.length - 3));
-                }
+
+            let index = localStorage.currentUser;
+            var user = JSON.parse(localStorage.getItem(`user#${index}`));
+            let achiv = user.achivment;
+            if ((game.snake.pos.length - 3) > achiv.maxSnake) {
+                user.achivment.maxSnake = game.snake.pos.length - 3;
+                localStorage.setItem(`user#${index}`, JSON.stringify(user));
+            }
+
+            var achivAll = JSON.parse(localStorage.getItem("maxScore"));
+            if ((game.snake.pos.length - 3) > achivAll.snake) {
+                alert("You've gone over the top");
+                achivAll.snake = game.snake.pos.length - 3;
+                localStorage.setItem("maxScore", JSON.stringify(achivAll));
             }
             reset();
         }
@@ -269,9 +291,10 @@ async function wait(t) {
 // Method used to reset the whole game
 function reset() {
     //game.apple = [Math.floor(Math.random() * game.xC), Math.floor(Math.random() * game.yC)];
-    do {game.apple = [Math.floor(Math.random() * game.xC), Math.floor(Math.random() * game.yC)];
-                
-    } while ( game.withStones && game.stones.map(p => arraysMatch(p, game.apple)).includes(true));
+    do {
+        game.apple = [Math.floor(Math.random() * game.xC), Math.floor(Math.random() * game.yC)];
+
+    } while (game.withStones && game.stones.map(p => arraysMatch(p, game.apple)).includes(true));
 
     game.snake = new (class {
         constructor(x0, y0) {
@@ -287,16 +310,3 @@ function reset() {
     // Set start text
     document.getElementById('time').innerHTML = `Press any arrow key to start moving!`;
 }
-
-
-
-// this.snake.pos = 3 cubes of the snake
-
-
-
-
-                // (
-                //     xC == 3 && yC == 3 || xC == 3 && yC == 4 || xC == 4 && yC == 3 || xC == 4 && yC == 4 ||
-                //     xC == 3 && yC == 26 || xC == 3 && yC == 25 || xC == 4 && yC == 26 || xC == 4 && yC == 25 ||
-                //     xC == 26 && yC == 3 || xC == 25 && yC == 3 || xC == 26 && yC == 4 || xC == 25 && yC == 4 ||
-                //     xC == 26 && yC == 26 || xC == 25 && yC == 26 || xC == 26 && yC == 25 || xC == 25 && yC == 25 )

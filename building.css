@@ -1,0 +1,36 @@
+html{
+    /* background-image: url('images/building.jpeg'); */
+    background-color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.gif{
+    align-items: center;
+    margin-left: 540px;
+}
+
+h1{
+    text-align: center;
+    margin: 50px 0px 50px 0px;
+    font-family: cursive;
+    color: black;
+}
+
+nav{
+    font-size: 30px;
+    text-align: center;
+    margin-top: 200px;
+    font-family: cursive;
+    color: black;
+}
+
+.returnNav{
+    color: black;
+    font-weight:bold;
+}
+
+
+
+
+

@@ -6,79 +6,42 @@
     <meta http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play It-GAMES</title>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="games.css">
     <script type="text/javascript" src="games.js"></script>
 </head>
-<a href="snake.html">go to snake game</a>
 
 <body>
-    <h1>WELCOME TO PLAY IT</h1>
-    <section class="gallery">
-        <!--all the items of this page-->
-        <div class="grid-container">
-            <div class="grid-item">
-                <img src="images/background-snake.webp" style="width:100%">
-                <div class="overlay">
-                    <h4>Strawberry</h4>
-                    <p>15$</p>
-                </div>
-
+    <h1 class="welcome">WELCOME TO PLAY IT</h1>
+    <div class="container">
+        <div class="row">
+            <div class="column">
+                <a href="building.html"><img src="images/letters.jpg" alt="letters"></a>
             </div>
-            <div class="grid-item">
-                <img src="images/background-snake.webp" style="width:100%">
-                <div class="overlay">
-                    <h4>Blueberry</h4>
-                    <p>18$</p>
-                </div>
+            <div class="column">
+                <a href="snake.html"><img src="images/snake.jpeg" alt="snake"></a>
             </div>
-            <div class="grid-item">
-                <img src="images/background-snake.webp" style="width:100%">
-                <div class="overlay">
-                    <h4>Flower</h4>
-                    <p>17$</p>
-                </div>
+            <div class="column">
+                <a href="building.html"><img src="images/chess.webp" alt="chess"></a>
             </div>
-            <div class="grid-item">
-                <img src="images/background-snake.webp" style="width:100%">
-                <div class="overlay">
-                    <h4>Nougat</h4>
-                    <p>20$</p>
-                </div>
+            <div class="column">
+                <a href="puzzle.html"><img src="images/puzzle.jpeg" alt="puzzle"></a>
             </div>
-            <div class="grid-item">
-                <img src="images/background-snake.webp" style="width:100%">
-                <div class="overlay">
-                    <h4>Pistachio</h4>
-                    <p>22$</p>
-                </div>
+            <div class="column">
+                <a href="building.html"><img src="images/thinking.webp" alt="thinking"></a>
             </div>
-            <div class="grid-item">
-                <img src="images/background-snake.webp" style="width:100%">
-                <div class="overlay">
-                    <h4>Pig</h4>
-                    <p>21$</p>
-                </div>
-            </div>
-            <div class="grid-item">
-                <img src="images/background-snake.webp" style="width:100%">
-                <div class="overlay">
-                    <h4>Chocolate</h4>
-                    <p>14$</p>
-                </div>
-            </div>
-            <div class="grid-item">
-                <img src="images/background-snake.webp" style="width:100%">
-                <div class="overlay">
-                    <h4>Caramel</h4>
-                    <p>19$</p>
-                </div>
-            </div>
-            <div class="grid-item">
-                <img src="images/background-snake.webp" style="width:100%">
-                <div class="overlay">
-                    <h4>Pink</h4>
-                    <p>24$</p>
-                </div>
+            <div class="column">
+                <a href="building.html"><img src="images/giraffe.jpeg" alt="giraffe"></a>
             </div>
         </div>
+        <div class="area">
+            <p id="message"></p>
+            <p id="date"></p>
+            <h2>Your score</h2>
+            <p id="snakeScore"></p>
+            <p id="memoryScore"></p>
+            <h2>General score</h2>
+            <p id="maxScoreSnake"></p>
+            <p id="maxScoreMemory">The max score in memory game is: </p>
+        </div>
+    </div>
 </body>
