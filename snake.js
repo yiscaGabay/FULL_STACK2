@@ -1,4 +1,4 @@
-
+"use strict";
 const game = buildMySnake(600, 600, 20, document.getElementById('snakeGame'));
 
 addEventListener('load', st);
@@ -184,6 +184,12 @@ function run() {
                 user.achivment.maxSnake = game.snake.pos.length - 3;
                 localStorage.setItem(`user#${index}`, JSON.stringify(user));
             }
+            var achivAll = JSON.parse(localStorage.getItem("maxScore"));
+            if ((game.snake.pos.length - 3) > achivAll.snake) {
+                alert("You've gone over the top");
+                achivAll.snake = game.snake.pos.length - 3;
+                localStorage.setItem("maxScore", JSON.stringify(achivAll));
+            }
             reset();
         }
         else if ((game.withStones) && (game.stones.map(p => arraysMatch(p, game.snake.pos[0])).includes(true))) {
@@ -204,49 +210,58 @@ function run() {
                 user.achivment.maxSnake = game.snake.pos.length - 3;
                 localStorage.setItem(`user#${index}`, JSON.stringify(user));
             }
-            reset();
-        }
-
-        if (game.snake.pos[0].map((p, i) => i === 0 ? p < 0 || p > game.xC - 1 : p < 0 || p > game.yC - 1).includes(true)) {
-            // Wall hit?
-            alert(`You lose! Your total score was ${game.snake.pos.length - 3}!`);
-            game.hasStarted = false;
-            game.withStones = false;
-            //document.getElementsByClassName('RB')[0].checked=false;//  .getElementById('r1').checked = false;
-            //document.getElementsByTagName('input').checked = false; 
-            document.getElementById('faster').checked = false;
-            document.getElementById('slower').checked = false;
-            document.getElementById('default').checked = false;
-            document.getElementById('add').checked = false;
-            document.getElementById('remove').checked = false;
-
-            let index = localStorage.currentUser;
-            var user = JSON.parse(localStorage.getItem(`user#${index}`));
-            let achiv = user.achivment;
-            if ((game.snake.pos.length - 3) > achiv.maxSnake) {
-                user.achivment.maxSnake = game.snake.pos.length - 3;
-                localStorage.setItem(`user#${index}`, JSON.stringify(user));
-            }
-
             var achivAll = JSON.parse(localStorage.getItem("maxScore"));
             if ((game.snake.pos.length - 3) > achivAll.snake) {
                 alert("You've gone over the top");
                 achivAll.snake = game.snake.pos.length - 3;
                 localStorage.setItem("maxScore", JSON.stringify(achivAll));
             }
-            reset();
         }
 
-        // Update game running time
-        game.runningTime += game.timer;
-
-        // Change HTML texts
-        document.getElementById('score').innerHTML = `You have ${game.snake.pos.length - 3} points.`;
-        document.getElementById('time').innerHTML = `Time: ${(game.runningTime / game.timer).toFixed(1)}s`;
+        reset();
     }
+
+    if (game.snake.pos[0].map((p, i) => i === 0 ? p < 0 || p > game.xC - 1 : p < 0 || p > game.yC - 1).includes(true)) {
+        // Wall hit?
+        alert(`You lose! Your total score was ${game.snake.pos.length - 3}!`);
+        game.hasStarted = false;
+        game.withStones = false;
+        //document.getElementsByClassName('RB')[0].checked=false;//  .getElementById('r1').checked = false;
+        //document.getElementsByTagName('input').checked = false; 
+        document.getElementById('faster').checked = false;
+        document.getElementById('slower').checked = false;
+        document.getElementById('default').checked = false;
+        document.getElementById('add').checked = false;
+        document.getElementById('remove').checked = false;
+
+        let index = localStorage.currentUser;
+        var user = JSON.parse(localStorage.getItem(`user#${index}`));
+        let achiv = user.achivment;
+        if ((game.snake.pos.length - 3) > achiv.maxSnake) {
+            user.achivment.maxSnake = game.snake.pos.length - 3;
+            localStorage.setItem(`user#${index}`, JSON.stringify(user));
+        }
+
+        var achivAll = JSON.parse(localStorage.getItem("maxScore"));
+        if ((game.snake.pos.length - 3) > achivAll.snake) {
+            alert("You've gone over the top");
+            achivAll.snake = game.snake.pos.length - 3;
+            localStorage.setItem("maxScore", JSON.stringify(achivAll));
+        }
+        reset();
+    }
+
+    // Update game running time
+    game.runningTime += game.timer;
+
+    // Change HTML texts
+    document.getElementById('score').innerHTML = `You have ${game.snake.pos.length - 3} points.`;
+    document.getElementById('time').innerHTML = `Time: ${(game.runningTime / game.timer).toFixed(1)}s`;
     // Draw the canvas
     return draw();
 }
+
+
 
 function draw() {
     // Some constant info

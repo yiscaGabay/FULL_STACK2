@@ -12,7 +12,7 @@ body {
 body {
     background-image: url(images/memory_bg1.webp);
     background-size: cover;
-    background-color:darksalmon;
+    /*background-color:darksalmon;*/
     background-repeat: no-repeat;
 
     text-align: center;
@@ -23,15 +23,15 @@ h1,
 h2 {
     font-family: Verdana, Geneva, sans-serif;
     font-variant: small-caps;
+    font-size: 50px;
 }
 
 h1{
     color:rgba(165, 42, 42, 0.83);
 }
 
-/***************************************************************************************************************************************/
+
 /*Header and Footer*/
-/***************************************************************************************************************************************/
 header {
     width: 100%;
     color: aliceblue;
@@ -39,7 +39,7 @@ header {
 
     font-weight: 300;
     display: block;
-    height: 125px;
+    height: 60px;
 }
 
 footer {
@@ -51,9 +51,7 @@ footer {
 }
 
 
-/***************************************************************************************************************************************/
 /*Game Grid*/
-/***************************************************************************************************************************************/
 
 #game-grid {
     margin-top: 0;
@@ -77,19 +75,10 @@ footer {
     background-position: center;
     background-color: white;
 
-    background-image: url(images/branch-bird.png);
+    background-image: url(images/memory_bg1.webp);
     background-size: 600px;
     margin-right: auto;
     margin-left: auto;
-
-    /*background-image: url(images/brown-bird.jpg);
-    background-size: 525px;*/
-    /*background-image: url(images/chick_baby_cute_easter_blue.png);
-    background-size: 450px;*/
-    /*background-image: url(images/pink-silly-bird.jpg);
-    background-size: 600px;*/
-    /*background-image: url(images/yellow-birds.jpg);
-    background-size: 600px;*/
 }
 
 .grid-item {
@@ -101,7 +90,6 @@ footer {
     text-align: center;
 
     background-color: whitesmoke;
-    /*background-image: url(images/sun-hi.png);*/
     background-size: cover;
     background-size: 100% 100%;
     background-repeat: space;
@@ -115,19 +103,17 @@ footer {
     margin-left: auto;
 }
 
-.grid-item img.letter {
-    width: 50px;
-    height: 50px;
-    padding-top: 50px;
+.grid-item img.number {
+    width: 100%;
+    height: 100%;
 }
 
-img.letter#I {
+img.number#I {
     width: 25px;
 }
 
-/***************************************************************************************************************************************/
 /*Controls Grid*/
-/***************************************************************************************************************************************/
+
 
 .controls-grid-container {
     display: inline-flex;
@@ -135,13 +121,14 @@ img.letter#I {
     margin-right: auto;
     margin-left: auto;
     height: 80PX;
-    width: 500px;
+    width: 300px;
     border-width: 0px 18px 18px 18px;
     border-color: #e45555;
     border-style: solid;
     padding: 0px;
     border-radius: 0px 0px 5px 5px;
     background-color: white;
+    justify-content: center;
 }
 
 .controls-grid-item {
@@ -173,10 +160,6 @@ img.letter#I {
     vertical-align: middle;
 }
 
-.mini-controls {
-    height: 15px;
-    width: 15px;
-}
 
 #play {
     opacity: 1;
@@ -197,15 +180,4 @@ img.letter#I {
 .controls-instructions {
     font-size: 0.8em;
     ;
-}
-
-/***************************************************************************************************************************************/
-/*How To Section*/
-/***************************************************************************************************************************************/
-
-#howto-section {
-    width: 40%;
-    margin-right: auto;
-    margin-left: auto;
-    font-size: 1.2em;
 }

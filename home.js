@@ -12,7 +12,6 @@ function init() {
         let maxScore = { snake: 0, memory: 0 };
         maxScore = JSON.stringify(maxScore);
         localStorage.setItem('maxScore', maxScore);
-
     }
     if (AmountOfUsers) {
         for (let i = 1; i <= AmountOfUsers; i++) {
@@ -20,8 +19,6 @@ function init() {
             users.push(user);
         }
     }
-    console.log(AmountOfUsers);
-    console.log(users);
 }
 
 
@@ -38,6 +35,7 @@ function switchVisible() {
         }
     }
 }
+
 function switchVisible1() {
     if (document.getElementById('containerLogIn')) {
         if (document.getElementById('containerLogIn').style.display == 'none') {
@@ -51,10 +49,6 @@ function switchVisible1() {
     }
 }
 
-
-function addUser(user, users) {
-    users.push(user);
-}
 
 function handleClick(event) {
     if (event == undefined) {
@@ -111,12 +105,10 @@ function handleClick(event) {
                 localStorage.AmountOfUsers = 1;
             }
             AmountOfUsers = localStorage.AmountOfUsers;
-            console.log("inSignin=" + AmountOfUsers);
             user = JSON.stringify(user);
             localStorage.setItem(`user#${AmountOfUsers}`, user);
             localStorage.currentUser = AmountOfUsers;
             users.push(user);
-            console.log(users);
             alert(`Hi ${userName}. Welcome to Play It!!!`);
             open("games.html");
             window.top.close();
@@ -161,7 +153,6 @@ function isExistUserName(name) {
 
 function isExistUserForUpdate(name, pass) {
     for (let i = 0; i < users.length; i++) {
-        console.log(users[i]);
         if (users[i].userName == name) {
             users[i].password = pass; // update users array
             localStorage.currentUser = i + 1;
@@ -203,13 +194,7 @@ function checkIsValidInput(user, pass) {
         }, 5000);
         return false;
     }
-    // if (pass.length < 8) {
-    //     document.getElementById("message").innerHTML = 'Password must contain 8-10 characters.';
-    //     setTimeout(function () {
-    //         document.getElementById("message").innerHTML = "";
-    //     }, 5000);
-    //     return false;
-    // }
+
     var re = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,10}$/;
     if (!re.test(pass)) {
         document.getElementById("message").innerHTML = 'The password must contain 8-10 chracters in this format: <br/>lowercase letters, uppercase letters, numbers and a special character';
@@ -220,17 +205,3 @@ function checkIsValidInput(user, pass) {
     }
     return true;
 }
-
-/////////////// for eye icon
-/*const togglePassword = document.querySelector("#togglePassword");
-const password1 = document.querySelector("#passwordSignIn");
-
-togglePassword.addEventListener("click", function () {
-    // toggle the type attribute
-    const type = password.getAttribute("type") === "password" ? "text" : "password";
-    password.setAttribute("type", type);
-
-    // toggle the icon
-    this.classList.toggle("bi-eye");
-});*/
-/////////////// for eye icon

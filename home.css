@@ -6,7 +6,6 @@ body {
 body {
     background-size: cover;
     background-image: url('images/background_home.jpg');
-    /* background-color: RGB(126, 217, 238); */
     background-repeat: no-repeat;
     text-align: center;
     font-family: Verdana, Geneva, sans-serif;
@@ -26,8 +25,6 @@ h1{
     font-family: cursive;
     font-size: 100px;
 }
-
-
 
 #containerSignIn {
     display: none;
@@ -53,8 +50,4 @@ input {
     align-items: flex-end;
     font-size: 2vw;
     font-family: Arial, Helvetica, sans-serif;
-}
-.bi bi-eye-slash{
-    margin-left: -30px;
-    cursor: pointer;
 }
