@@ -8,6 +8,12 @@ addEventListener("load", init);
 function init() {
     let AmountOfUsers = 0;
     AmountOfUsers = localStorage.AmountOfUsers;
+    if (localStorage.length == 0) {
+        let maxScore = { snake: 0, memory: 0 };
+        maxScore = JSON.stringify(maxScore);
+        localStorage.setItem('maxScore', maxScore);
+
+    }
     if (AmountOfUsers) {
         for (let i = 1; i <= AmountOfUsers; i++) {
             let user = JSON.parse(localStorage.getItem(`user#${i}`));
@@ -16,7 +22,6 @@ function init() {
     }
     console.log(AmountOfUsers);
     console.log(users);
-
 }
 
 
@@ -99,14 +104,14 @@ function handleClick(event) {
         if (!isExistUserName(userName)) {
             user.userName = userName;
             user.password = password;
-            user.achivment = {};
+            user.achivment = { date: 0, maxSnake: 0, maxMemory: 0 };
             if (localStorage.AmountOfUsers) {
                 localStorage.AmountOfUsers = Number(localStorage.AmountOfUsers) + 1;
             } else {
                 localStorage.AmountOfUsers = 1;
             }
             AmountOfUsers = localStorage.AmountOfUsers;
-            console.log("inSignin="+AmountOfUsers);
+            console.log("inSignin=" + AmountOfUsers);
             user = JSON.stringify(user);
             localStorage.setItem(`user#${AmountOfUsers}`, user);
             localStorage.currentUser = AmountOfUsers;
@@ -159,7 +164,7 @@ function isExistUserForUpdate(name, pass) {
         console.log(users[i]);
         if (users[i].userName == name) {
             users[i].password = pass; // update users array
-            localStorage.currentUser = i+1;
+            localStorage.currentUser = i + 1;
             let user = JSON.parse(localStorage.getItem(`user#${i + 1}`));
             localStorage.removeItem(`user#${i + 1}`);
             user.password = pass;
@@ -175,7 +180,7 @@ function isExistUser(name, pass) {
     for (let i = 0; i < users.length; i++) {
         if (users[i].userName == name) {
             if (users[i].password == pass) {
-                localStorage.currentUser = i+1;
+                localStorage.currentUser = i + 1;
                 return true;
             }
         }
