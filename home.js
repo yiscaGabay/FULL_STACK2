@@ -20,12 +20,9 @@ function init() {
             users.push(user);
         }
     }
-    console.log(AmountOfUsers);
-    console.log(users);
 }
 
-
-//2 function to change between divs in same place. 
+//Change between divs in same place. 
 function switchVisible() {
     if (document.getElementById('containerLogIn')) {
         if (document.getElementById('containerLogIn').style.display == 'none') {
@@ -51,11 +48,6 @@ function switchVisible1() {
     }
 }
 
-
-function addUser(user, users) {
-    users.push(user);
-}
-
 function handleClick(event) {
     if (event == undefined) {
         throw "Invalid Argument";
@@ -65,12 +57,13 @@ function handleClick(event) {
     }
     var idStr = event.target.id;
 
+    //Switches between the divs displayed on the screen
     if (idStr == "newPassword") {
         switchVisible1();
     }
 
+    //For an existing user
     if (idStr == "logIn") {
-        //event.defaultPrevented();
         userName = document.getElementById('nameLogIn').value;
         password = document.getElementById('passwordLogIn').value;
         if (userName == '' || password == '') {
@@ -80,6 +73,7 @@ function handleClick(event) {
             }, 5000);
             return;
         }
+        //Make sure that userName and password exist (respectively)
         if (isExistUser(userName, password)) {
             open("games.html");
             window.top.close();
@@ -92,36 +86,38 @@ function handleClick(event) {
         }
     }
 
+    //For new user
     if (idStr == "signIn") {
         var user = {};
         userName = document.getElementById('nameSignIn').value;
         password = document.getElementById('passwordSignIn').value;
+        //Make sure there are no empty fields, username contains less than 10 characters, password according to the required format
         if (!checkIsValidInput(userName, password)) {
             switchVisible();
             return;
         }
-        // add a new user only if he doesn't exist or there is no such username
+        //add a new user only if he doesn't exist or there is no such username
         if (!isExistUserName(userName)) {
             user.userName = userName;
             user.password = password;
             user.achivment = { date: 0, maxSnake: 0, maxMemory: 0 };
+            //Check if localStorage is empty or not
             if (localStorage.AmountOfUsers) {
                 localStorage.AmountOfUsers = Number(localStorage.AmountOfUsers) + 1;
             } else {
                 localStorage.AmountOfUsers = 1;
             }
             AmountOfUsers = localStorage.AmountOfUsers;
-            console.log("inSignin=" + AmountOfUsers);
             user = JSON.stringify(user);
             localStorage.setItem(`user#${AmountOfUsers}`, user);
             localStorage.currentUser = AmountOfUsers;
             users.push(user);
-            console.log(users);
             alert(`Hi ${userName}. Welcome to Play It!!!`);
             open("games.html");
             window.top.close();
         }
         else {
+            switchVisible();
             document.getElementById("message").innerHTML = `'${userName}' user name is already taken`;
             setTimeout(function () {
                 document.getElementById("message").innerHTML = "";
@@ -129,13 +125,15 @@ function handleClick(event) {
         }
     }
 
+    //For user who has forgotten a password or wants to change a password
     if (idStr == "update") {
         userName = document.getElementById('nameForgot').value;
         password = document.getElementById('passwordForgot').value;
+        //Make sure there are no empty fields, username contains less than 10 characters, password according to the required format
         if (!checkIsValidInput(userName, password)) {
-            //switchVisible();
             return;
         }
+        //Make sure that userName does exist and update the password
         if (isExistUserForUpdate(userName, password)) {
             ("Your password was updated successfully");
             open('games.html');
@@ -150,6 +148,7 @@ function handleClick(event) {
     }
 }
 
+//add a new user only if he doesn't exist or there is no such username
 function isExistUserName(name) {
     for (let i = 0; i < users.length; i++) {
         if (users[i].userName == name) {
@@ -159,9 +158,9 @@ function isExistUserName(name) {
     return false;
 }
 
+//Make sure that userName does exist and update the password
 function isExistUserForUpdate(name, pass) {
     for (let i = 0; i < users.length; i++) {
-        console.log(users[i]);
         if (users[i].userName == name) {
             users[i].password = pass; // update users array
             localStorage.currentUser = i + 1;
@@ -176,6 +175,7 @@ function isExistUserForUpdate(name, pass) {
     return false;
 }
 
+//add a new user only if he doesn't exist or there is no such username
 function isExistUser(name, pass) {
     for (let i = 0; i < users.length; i++) {
         if (users[i].userName == name) {
@@ -188,6 +188,7 @@ function isExistUser(name, pass) {
     return false;
 }
 
+//Make sure there are no empty fields, username contains less than 10 characters, password according to the required format
 function checkIsValidInput(user, pass) {
     if (user == '' || pass == '') {
         document.getElementById("message").innerHTML = 'One or more of the fields are empty';
@@ -203,13 +204,6 @@ function checkIsValidInput(user, pass) {
         }, 5000);
         return false;
     }
-    // if (pass.length < 8) {
-    //     document.getElementById("message").innerHTML = 'Password must contain 8-10 characters.';
-    //     setTimeout(function () {
-    //         document.getElementById("message").innerHTML = "";
-    //     }, 5000);
-    //     return false;
-    // }
     var re = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,10}$/;
     if (!re.test(pass)) {
         document.getElementById("message").innerHTML = 'The password must contain 8-10 chracters in this format: <br/>lowercase letters, uppercase letters, numbers and a special character';
@@ -220,17 +214,3 @@ function checkIsValidInput(user, pass) {
     }
     return true;
 }
-
-/////////////// for eye icon
-/*const togglePassword = document.querySelector("#togglePassword");
-const password1 = document.querySelector("#passwordSignIn");
-
-togglePassword.addEventListener("click", function () {
-    // toggle the type attribute
-    const type = password.getAttribute("type") === "password" ? "text" : "password";
-    password.setAttribute("type", type);
-
-    // toggle the icon
-    this.classList.toggle("bi-eye");
-});*/
-/////////////// for eye icon

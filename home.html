@@ -10,7 +10,6 @@
     <script type="text/javascript" src="home.js"></script>
 </head>
 
-
 <header>
     <h1>PLAY IT</h1>
 </header>
@@ -28,7 +27,7 @@
                 <input type="password" id="passwordLogIn" name="passwordLogIn" placeholder="Enter password" size="100"
                     minlength="8" maxlength="10" required><br>
             </div>
-            <input class="inputButton" id="logIn" name="logIn" type="button" value="LOG IN"><br> <!-- disabled-->
+            <input class="inputButton" id="logIn" name="logIn" type="button" value="LOG IN"><br>
             <input class="inputButton" type="button" id="createAccount" name="createAccount" value="Create account"
                 onclick="switchVisible();">
             <input class="inputButton" type="button" id="newPassword" value="Forgot your password?">
@@ -38,11 +37,10 @@
     <div id="containerSignIn">
         <h2>SIGN IN</h2>
         <form id="form2">
-            <input type="text" id="nameSignIn" maxlength="10" name="nameSignIn" placeholder="Choose a User Name" size="100"
-                required><br>
+            <input type="text" id="nameSignIn" maxlength="10" name="nameSignIn" placeholder="Choose a User Name"
+                size="100" required><br>
             <input type="password" id="passwordSignIn" name="passwordSignIn" placeholder="Choose a Password" size="100"
                 minlength="8" maxlength="10" required><br>
-            <i class="bi bi-eye-slash" id="togglePassword"></i> <!-- eye-icon -->
             <input id="signIn" name="signIn" class="inputButton" type="button" value="Sign in" formaction=""
                 onclick="switchVisible();">
         </form>
@@ -51,8 +49,8 @@
     <div hidden id="containerForgot">
         <h2>NEW PASSWORD</h2>
         <form id="form3">
-            <input type="text" id="nameForgot" name="nameForgot" maxlength="10" placeholder="Enter your user name" size="100"
-                required><br>
+            <input type="text" id="nameForgot" name="nameForgot" maxlength="10" placeholder="Enter your user name"
+                size="100" required><br>
             <input type="password" id="passwordForgot" name="passwordForgot" placeholder="Enter new password" size="100"
                 min="8" max="10" required><br>
             <input id="update" name="update" class="inputButton" type="button" value="Update"><br>

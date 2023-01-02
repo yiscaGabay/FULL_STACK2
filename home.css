@@ -6,14 +6,9 @@ body {
 body {
     background-size: cover;
     background-image: url('images/background_home.jpg');
-    /* background-color: RGB(126, 217, 238); */
     background-repeat: no-repeat;
     text-align: center;
     font-family: Verdana, Geneva, sans-serif;
-}
-
-#message{
-    color: red;
 }
 
 h1,
@@ -21,13 +16,12 @@ h2 {
     font-family: Verdana, Geneva, sans-serif;
     font-variant: small-caps;
 }
-h1{
+
+h1 {
     margin-top: 50px;
     font-family: cursive;
     font-size: 100px;
 }
-
-
 
 #containerSignIn {
     display: none;
@@ -37,7 +31,6 @@ input {
     border-radius: 5px;
     width: 200px;
     text-align-last: center;
-    /*text-align: center;     cursor in center */
     margin: 10px;
 }
 
@@ -54,7 +47,7 @@ input {
     font-size: 2vw;
     font-family: Arial, Helvetica, sans-serif;
 }
-.bi bi-eye-slash{
-    margin-left: -30px;
-    cursor: pointer;
+
+#message {
+    color: red;
 }
