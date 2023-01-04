@@ -30,7 +30,7 @@ function init() {
     var memoryScore = currentUs.achivment.maxMemory;
     document.getElementById("memoryScore").innerHTML = "memory: " + memoryScore;
 
-    
+
     var generalScore = JSON.parse(localStorage.getItem("maxScore"));
     //Display general score in snake game
     maxScoreSnake = generalScore.snake;

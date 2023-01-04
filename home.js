@@ -12,13 +12,48 @@ function init() {
         let maxScore = { snake: 0, memory: 0 };
         maxScore = JSON.stringify(maxScore);
         localStorage.setItem('maxScore', maxScore);
-
     }
     if (AmountOfUsers) {
         for (let i = 1; i <= AmountOfUsers; i++) {
             let user = JSON.parse(localStorage.getItem(`user#${i}`));
             users.push(user);
         }
+    }
+    checkCookie();
+}
+
+function setCookie(cname, cvalue, exhours) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exhours * 60 * 60 * 1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+
+    let name = getCookie("name");
+    if (name != "") {
+        window.open("games.html");
+        window.top.close();
+    } else {
+        var currentUs = JSON.parse(localStorage.getItem(`user#${localStorage.currentUser}`));
+        var currentUserName = currentUs.userName;
+        setCookie("name", currentUserName, 2);
     }
 }
 
@@ -35,6 +70,7 @@ function switchVisible() {
         }
     }
 }
+
 function switchVisible1() {
     if (document.getElementById('containerLogIn')) {
         if (document.getElementById('containerLogIn').style.display == 'none') {

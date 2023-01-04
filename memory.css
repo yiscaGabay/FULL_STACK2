@@ -1,0 +1,183 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* The following style is used to eliminate some height issues in some browsers */
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background-image: url(images/memory_bg1.webp);
+    background-size: cover;
+    /*background-color:darksalmon;*/
+    background-repeat: no-repeat;
+
+    text-align: center;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+h1,
+h2 {
+    font-family: Verdana, Geneva, sans-serif;
+    font-variant: small-caps;
+    font-size: 50px;
+}
+
+h1{
+    color:rgba(165, 42, 42, 0.83);
+}
+
+
+/*Header and Footer*/
+header {
+    width: 100%;
+    color: aliceblue;
+    font-size: 3em;
+
+    font-weight: 300;
+    display: block;
+    height: 60px;
+}
+
+footer {
+    clear: both;
+    width: 100%;
+    height: 10%;
+    min-height: 10%;
+
+}
+
+
+/*Game Grid*/
+
+#game-grid {
+    margin-top: 0;
+    align-self: center;
+    text-align: center;
+}
+
+#grid-container {
+    border: 18px solid #e45555;
+    border-radius: 10px 10px 0px 0px;
+
+    width: 640px;
+
+    height: 640px;
+    /*600px + 8* 5px of padding*/
+
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
+
+    background-image: url(images/memory_bg1.webp);
+    background-size: 600px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.grid-item {
+    border: 5px solid #e45555;
+    width: 150px;
+    height: 150px;
+    padding: 0px;
+    font-size: 30px;
+    text-align: center;
+
+    background-color: whitesmoke;
+    background-size: cover;
+    background-size: 100% 100%;
+    background-repeat: space;
+}
+
+.grid-item img {
+    width: 150px;
+    height: 150px;
+    padding: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.grid-item img.number {
+    width: 100%;
+    height: 100%;
+}
+
+img.number#I {
+    width: 25px;
+}
+
+/*Controls Grid*/
+
+
+.controls-grid-container {
+    display: inline-flex;
+    grid-template-columns: auto auto auto auto;
+    margin-right: auto;
+    margin-left: auto;
+    height: 80PX;
+    width: 300px;
+    border-width: 0px 18px 18px 18px;
+    border-color: #e45555;
+    border-style: solid;
+    padding: 0px;
+    border-radius: 0px 0px 5px 5px;
+    background-color: white;
+    justify-content: center;
+}
+
+.controls-grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    text-align: center;
+}
+
+#console {
+    width: 540px;
+    height: 60PX;
+    padding: 10px;
+}
+
+#play,
+#stop,
+#playagain {
+    height: 80px;
+    width: 80px;
+}
+
+#game-console {
+    height: 80px;
+    width: 540px;
+    min-width: 540px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+#play {
+    opacity: 1;
+}
+
+#stop {
+    height: 80px;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
+
+#playagain {
+    height: 80px;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
+
+.controls-instructions {
+    font-size: 0.8em;
+    ;
+}

@@ -1,18 +1,8 @@
 "use strict";
-
 const game = buildMySnake(600, 600, 20, document.getElementById('snakeGame'));
 
 addEventListener('load', st);
 addEventListener('click', handleClick);
-function currentDate() {
-    var hour = new Date().getHours();
-    var minute = new Date().getMinutes();
-    var day = new Date().getDate();
-    var month = new Date().getMonth() + 1;
-    var year = new Date().getFullYear();
-    console.log(`${day}/${month}/${year} ${hour}:${minute}`);
-    return (`${day}/${month}/${year} ${hour}:${minute}`);
-}
 
 function handleClick(event) {
     if (event == undefined) {
@@ -171,11 +161,9 @@ function run() {
             alert(`You lose! Your total score was ${game.snake.pos.length - 3}!`);
             game.hasStarted = false;
             game.withStones = false;
-            document.getElementById('faster').checked = false;
-            document.getElementById('slower').checked = false;
-            document.getElementById('default').checked = false;
-            document.getElementById('add').checked = false;
-            document.getElementById('remove').checked = false;
+            for (let i = 0; i < document.getElementsByClassName('options').length; i++) {
+                document.getElementsByClassName('options')[i].checked = false;
+            }
 
             // find the current user to update achivment
             let index = localStorage.currentUser;
@@ -185,7 +173,6 @@ function run() {
                 user.achivment.maxSnake = game.snake.pos.length - 3;
                 localStorage.setItem(`user#${index}`, JSON.stringify(user));
             }
-
             var achivAll = JSON.parse(localStorage.getItem("maxScore"));
             if ((game.snake.pos.length - 3) > achivAll.snake) {
                 alert("You've gone over the top");
@@ -199,12 +186,10 @@ function run() {
             alert(`You lose! Your total score was ${game.snake.pos.length - 3}!`);
             game.hasStarted = false;
             game.withStones = false;
-            document.getElementById('faster').checked = false;
-            document.getElementById('slower').checked = false;
-            document.getElementById('default').checked = false;
-            document.getElementById('add').checked = false;
-            document.getElementById('remove').checked = false;
 
+            for (let i = 0; i < document.getElementsByClassName('options').length; i++) {
+                document.getElementsByClassName('options')[i].checked = false;
+            }
             let index = localStorage.currentUser;
             var user = JSON.parse(localStorage.getItem(`user#${index}`));
             let achiv = user.achivment;
@@ -227,16 +212,41 @@ function run() {
             alert(`You lose! Your total score was ${game.snake.pos.length - 3}!`);
             game.hasStarted = false;
             game.withStones = false;
-            //document.getElementsByClassName('RB')[0].checked=false;//  .getElementById('r1').checked = false;
-            // var allRadioInputs = document.querySelectorAll('input[type="radio"]');
-            // console.log(allRadioInputs);
-            // allRadioInputs.checked=false;
             document.getElementById('faster').checked = false;
             document.getElementById('slower').checked = false;
             document.getElementById('default').checked = false;
             document.getElementById('add').checked = false;
             document.getElementById('remove').checked = false;
 
+            let index = localStorage.currentUser;
+            var user = JSON.parse(localStorage.getItem(`user#${index}`));
+            let achiv = user.achivment;
+            if ((game.snake.pos.length - 3) > achiv.maxSnake) {
+                user.achivment.maxSnake = game.snake.pos.length - 3;
+                localStorage.setItem(`user#${index}`, JSON.stringify(user));
+            }
+
+            var achivAll = JSON.parse(localStorage.getItem("maxScore"));
+            if ((game.snake.pos.length - 3) > achivAll.snake) {
+                alert("You've gone over the top");
+                achivAll.snake = game.snake.pos.length - 3;
+                localStorage.setItem("maxScore", JSON.stringify(achivAll));
+            }
+            reset();
+        }
+
+
+
+
+        if (game.snake.pos[0].map((p, i) => i === 0 ? p < 0 || p > game.xC - 1 : p < 0 || p > game.yC - 1).includes(true)) {
+            // Wall hit?
+            alert(`You lose! Your total score was ${game.snake.pos.length - 3}!`);
+            game.hasStarted = false;
+            game.withStones = false;
+
+            for (let i = 0; i < document.getElementsByClassName('options').length; i++) {
+                document.getElementsByClassName('options')[i].checked = false;
+            }
             let index = localStorage.currentUser;
             var user = JSON.parse(localStorage.getItem(`user#${index}`));
             let achiv = user.achivment;
@@ -263,7 +273,9 @@ function run() {
     }
     // Draw the canvas
     return draw();
+
 }
+
 
 function draw() {
     // Some constant info
@@ -308,7 +320,6 @@ async function wait(t) {
 
 // Method used to reset the whole game
 function reset() {
-    //game.apple = [Math.floor(Math.random() * game.xC), Math.floor(Math.random() * game.yC)];
     do {
         game.apple = [Math.floor(Math.random() * game.xC), Math.floor(Math.random() * game.yC)];
 
